@@ -1,0 +1,31 @@
+{% extends 'Main/base.html' %}
+{% block content %}
+<div class="row justify-content-center ">
+    <div class=" p-2 bg-primary  text-center mb-3">
+        <h1 >Weather Updates</h1>
+    </div>
+    <div class="col-sm-6">
+        
+        <form class="d-flex" role="search" method="POST">
+            {% csrf_token %}
+            <input class="form-control me-2" name='city' type="search" placeholder="Search City" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <hr>
+        <div class="card">
+            <div class="card-body">
+                <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png" alt="">
+                <div class="card-text float-end">{{ city_weather.time }}</div>
+                <div class="card-text"><h5>{{ city_weather.city }} {{ city_weather.country_code }}</h5></div>
+                <div class="card-text"><h6>{{ city_weather.temperature }}</h6></div>
+                <div class="card-text"><h6>{{ city_weather.description | title }}</h6></div>
+                <div class="card-text"><h6>{{ city_weather.wind }}</h6></div>
+                <div class="card-text"><h6>{{ city_weather.humidity }}</h6></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock  %}
